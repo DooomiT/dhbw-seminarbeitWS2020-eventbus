@@ -8,6 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const events = [];
+const displaydata_endpoint = process.env.DISPLAYDATA_ENDPOINT;
 
 app.post('/events', (req, res) => {
     const event = req.body;
@@ -16,7 +17,7 @@ app.post('/events', (req, res) => {
     events.push(event);
 
     // forward the event to the display service
-    axios.post('http://localhost:4001/events', event);
+    axios.post(displaydata_endpoint, event);
     console.log("event received",event);
     res.send({status: 'ok event rec. and forwarded'});
 });
