@@ -8,6 +8,8 @@ const app = express();
 app.use(bodyParser.json());
 
 const events = [];
+
+// dynamic endpoints
 const displaydata_endpoint = process.env.DISPLAYDATA_ENDPOINT;
 
 app.post('/events', (req, res) => {
