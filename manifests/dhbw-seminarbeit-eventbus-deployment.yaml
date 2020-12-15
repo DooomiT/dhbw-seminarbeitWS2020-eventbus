@@ -1,34 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\Program Files (x86)\kompose\kompose.exe convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
   labels:
-    io.kompose.service: dhbw-seminarbeit-eventbus
+    app.kubernetes.io/name: dhbw-seminarbeit-eventbus
   name: dhbw-seminarbeit-eventbus
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: dhbw-seminarbeit-eventbus
+      app.kubernetes.io/name: dhbw-seminarbeit-eventbus
   strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: C:\Program Files (x86)\kompose\kompose.exe convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.network/dhbw_sem: "true"
-        io.kompose.service: dhbw-seminarbeit-eventbus
+        app.kubernetes.io/name: dhbw-seminarbeit-eventbus
     spec:
       containers:
       - env:
         - name: DISPLAYDATA_ENDPOINT
-          value: http://klausur_dhbw-seminarbeit-displaydata_1:4001/events
-        image: dhbw-seminarbeit-eventbus
+          valueFrom:
+            configMapKeyRef:
+              key: DISPLAYDATA_ENDPOINT
+              name: dhbw-seminararbeit-displaydata-env
+        image: flo101/dhbw-seminarbeit-eventbus
         imagePullPolicy: ""
         name: dhbw-seminarbeit-eventbus
         ports:

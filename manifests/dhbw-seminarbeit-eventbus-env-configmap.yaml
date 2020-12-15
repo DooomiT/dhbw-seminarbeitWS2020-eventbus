@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: dhbw-seminararbeit-displaydata-env
+  name: dhbw-seminararbeit-displaydata-env
+data:
+  DISPLAYDATA_ENDPOINT: "http://localhost:4001"
