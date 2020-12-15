@@ -10,7 +10,10 @@ app.use(bodyParser.json());
 const events = [];
 
 // dynamic endpoints
-const displaydata_endpoint = process.env.DISPLAYDATA_ENDPOINT;
+var displaydata_endpoint = "http://localhost:4001";
+if(process.env.DISPLAYDATA_ENDPOINT){
+    displaydata_endpoint = process.env.DISPLAYDATA_ENDPOINT;
+}
 
 app.post('/events', (req, res) => {
     const event = req.body;
