@@ -6,4 +6,4 @@ metadata:
     app.kubernetes.io/name: dhbw-seminararbeit-displaydata-env
   name: dhbw-seminararbeit-displaydata-env
 data:
-  DISPLAYDATA_ENDPOINT: "http://localhost:4001"
+  DISPLAYDATA_ENDPOINT: dhbw-seminarbeit-displaydata:4001/events

@@ -15,6 +15,7 @@ spec:
       labels:
         app.kubernetes.io/name: dhbw-seminarbeit-eventbus
     spec:
+      hostname: eventbus
       containers:
       - env:
         - name: DISPLAYDATA_ENDPOINT
@@ -28,6 +29,12 @@ spec:
         ports:
         - containerPort: 4005
         resources: {}
+        livenessProbe:
+          httpGet:
+            path: /events
+            port: 4005
+          initialDelaySeconds: 20
+          periodSeconds: 10
       restartPolicy: Always
       serviceAccountName: ""
       volumes: null

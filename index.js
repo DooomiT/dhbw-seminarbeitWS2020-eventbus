@@ -12,7 +12,8 @@ const events = [];
 // dynamic endpoints
 var displaydata_endpoint = "http://localhost:4001";
 if(process.env.DISPLAYDATA_ENDPOINT){
-    displaydata_endpoint = process.env.DISPLAYDATA_ENDPOINT;
+    displaydata_endpoint="http://";
+    displaydata_endpoint += process.env.DISPLAYDATA_ENDPOINT;
 }
 
 app.post('/events', (req, res) => {
@@ -34,5 +35,6 @@ app.get('/events', (req, res) => {
 });
 
 app.listen(4005, () => {
+    console.log(displaydata_endpoint);
     console.log('Listening to 4005');
 });
